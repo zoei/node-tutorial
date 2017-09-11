@@ -31,7 +31,13 @@ module.exports = (app) => {
    * 处理静态文件
    */
   if (!isProduction) {
-    app.use(miStaticFiles('/static', path.resolve(__dirname, "../static")))
+    app.use(miStaticFiles({
+      url: '/static',
+      dir: path.resolve(__dirname, "../static")
+      headers: {
+        maxAge: 0
+      }
+    ))
   }
 
   /**
